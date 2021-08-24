@@ -31,5 +31,8 @@ jobs:
         KO_DOCKER_REPO: ghcr.io/${{ github.repository_owner }}
         AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         REPOSITORY_OWNER: ${{ github.repository_owner }}
-        RELEASE_TAG: ${{ steps.version.outputs.tag }}
-      run: make publish
+        VERSION: ${{ steps.version.outputs.tag }}
+      run: |
+        KO="go run -modfile hack/ko/go.mod github.com/google/ko"
+        echo "${AUTH_TOKEN}" | $(KO) login ghcr.io --username ${REPOSITORY_OWNER} --password-stdin
+        make publish
