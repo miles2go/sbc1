@@ -2,4 +2,4 @@ module github.com/k8s-service-bindings/service-binding-controller/hack/controlle
 
 go 1.16
 
-require sigs.k8s.io/controller-tools v0.6.2
+require sigs.k8s.io/controller-tools v0.9.1
